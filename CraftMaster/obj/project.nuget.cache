@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "tDv3q2x8i4x9nwPHXY0grQDnK/3Op593RMbPL81WPZEvKoG1L9S8EYKXNfm8dFG0dmZkWluMNLxuITqrkOQUVA==",
+  "success": true,
+  "projectFilePath": "D:\\code\\pathfinder\\CraftMaster\\CraftMaster\\CraftMaster.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Windows11\\.nuget\\packages\\assemblypublicizer\\1.0.2\\assemblypublicizer.1.0.2.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\ilrepack.msbuild.task\\2.0.13\\ilrepack.msbuild.task.2.0.13.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\lib.harmony\\2.0.4\\lib.harmony.2.0.4.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\microsoft.build.framework\\15.9.20\\microsoft.build.framework.15.9.20.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\microsoft.build.utilities.core\\15.9.20\\microsoft.build.utilities.core.15.9.20.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\microsoft.visualstudio.setup.configuration.interop\\1.16.30\\microsoft.visualstudio.setup.configuration.interop.1.16.30.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\modkit\\1.0.8\\modkit.1.0.8.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\system.collections.immutable\\1.5.0\\system.collections.immutable.1.5.0.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\system.runtime.interopservices.runtimeinformation\\4.3.0\\system.runtime.interopservices.runtimeinformation.4.3.0.nupkg.sha512",
+    "C:\\Users\\Windows11\\.nuget\\packages\\ww-blueprint-core\\2.8.0\\ww-blueprint-core.2.8.0.nupkg.sha512"
+  ],
+  "logs": []
+}

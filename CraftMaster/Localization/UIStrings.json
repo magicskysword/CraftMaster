@@ -1,0 +1,536 @@
+[
+  {
+    "Key": "CraftMaster.UI.Unavailable",
+    "ProcessTemplates": false,
+    "enGB":  "Unavailable",
+    "zhCN": "请启动游戏后打开UI"
+  },
+  {
+    "Key": "CraftMaster.UI.ModCheating",
+    "ProcessTemplates": false,
+    "zhCN": "Mod 作弊",
+    "enGB":  "Mod Cheating"
+  },
+  {
+    "Key": "CraftMaster.UI.InstantCraft",
+    "ProcessTemplates": false,
+    "enGB":  "Instant Craft",
+    "zhCN": "立即制造"
+  },
+  {
+    "Key": "CraftMaster.UI.IgnoreFeatureLimit",
+    "ProcessTemplates": false,
+    "enGB": "Ignore Feature Limit",
+    "zhCN": "忽略专长限制"
+  },
+  {
+    "Key": "CraftMaster.UI.IgnoreMythicFeatureLimit",
+    "ProcessTemplates": false,
+    "enGB": "Ignore Mythic Feature Limit",
+    "zhCN": "忽略神话专长限制"
+  },
+  {
+    "Key": "CraftMaster.UI.CraftSpeed",
+    "ProcessTemplates": false,
+    "enGB": "Craft Speed",
+    "zhCN": "制造速度倍速"
+  },
+  {
+    "Key": "CraftMaster.UI.NoUnit" ,
+    "ProcessTemplates": false,
+    "enGB": "No Unit",
+    "zhCN": "没有选择角色"
+  },
+  {
+    "Key": "CraftMaster.UI.Money(money)",
+    "ProcessTemplates": false,
+    "enGB": "Money: {0}",
+    "zhCN": "当前金钱：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.KnowledgeArcana(level)",
+    "ProcessTemplates": false,
+    "zhCN": "知识（奥术）：{0}",
+    "enGB": "Knowledge Arcana: {0}"
+  },
+  {
+    "Key": "CraftMaster.UI.LoreReligion(level)",
+    "ProcessTemplates": false,
+    "zhCN": "学识（宗教）：{0}",
+    "enGB": "Knowledge Religion: {0}"
+  },
+  {
+    "Key": "CraftMaster.UI.TotalDC(level)",
+    "ProcessTemplates": false,
+    "zhCN": "总制造DC：{0}",
+    "enGB": "Total DC: {0}"
+  },
+  {
+    "Key": "CraftMaster.UI.UnitName(name)",
+    "ProcessTemplates": false,
+    "enGB":  "Unit Name: {0}",
+    "zhCN": "角色名称：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.CraftType",
+    "ProcessTemplates": false,
+    "enGB":  "Craft Type",
+    "zhCN": "造物类型"
+  },
+  {
+    "Key": "CraftMaster.UI.CraftType_Normal",
+    "ProcessTemplates": false,
+    "enGB": "Craft Normal Equipment",
+    "zhCN": "制造普通装备"
+  },
+  {
+    "Key": "CraftMaster.UI.CraftType_Weapon",
+    "ProcessTemplates": false,
+    "enGB": "Craft Weapon",
+    "zhCN": "制造武器"
+  },
+  {
+    "Key": "CraftMaster.UI.CraftType_Armor",
+    "ProcessTemplates": false,
+    "enGB": "Craft Armor",
+    "zhCN": "制造防具"
+  },
+  {
+    "Key": "CraftMaster.UI.CraftType_Enchantments",
+    "ProcessTemplates": false,
+    "enGB": "Enchant Equipment",
+    "zhCN": "装备附魔"
+  },
+  {
+    "Key": "CraftMaster.UI.CraftType_Wand",
+    "ProcessTemplates": false,
+    "enGB": "Craft Wand",
+    "zhCN": "制造魔杖"
+  },
+  {
+    "Key": "CraftMaster.UI.EnchantmentType_Weapon",
+    "ProcessTemplates": false,
+    "enGB":  "Weapon",
+    "zhCN": "附魔 - 武器"
+  },
+  {
+    "Key": "CraftMaster.UI.WeaponName",
+    "ProcessTemplates": false,
+    "enGB":  "Weapon Name",
+    "zhCN": "武器名称"
+  },
+  {
+    "Key": "CraftMaster.UI.EquipType",
+    "ProcessTemplates": false,
+    "enGB":  "Equip Type",
+    "zhCN": "装备类型"
+  },
+  {
+    "Key": "CraftMaster.UI.WeaponTooltip(name,type,damage,critical,range,weight,price)",
+    "ProcessTemplates": false,
+    "zhCN": "名称：{0}\n类型：{1}\n伤害：{2}\n暴击：{3}\n范围：{4}\n重量：{5}\n价格：{6}",
+    "enGB":  "Name: {0}\nType: {1}\nDamage: {2}\nCritical: {3}\nRange: {4}\nWeight: {5}\nPrice: {6}"
+  },
+  {
+    "Key": "CraftMaster.UI.ArmorTooltip(name,type,ac,weight,price)",
+    "ProcessTemplates": false,
+    "zhCN": "名称：{0}\n类型：{1}\n防御：{2}\n重量：{3}\n价格：{4}",
+    "enGB":  "Name: {0}\nType: {1}\nAC: {2}\nWeight: {3}\nPrice: {4}"
+  },
+  {
+    "Key": "CraftMaster.UI.SimpleWeapon",
+    "ProcessTemplates": false,
+    "enGB":  "Simple Weapon",
+    "zhCN": "简易武器"
+  },
+  {
+    "Key": "CraftMaster.UI.MartialWeapon",
+    "ProcessTemplates": false,
+    "enGB":  "Martial Weapon",
+    "zhCN": "军用武器"
+  },
+  {
+    "Key": "CraftMaster.UI.ExoticWeapon",
+    "ProcessTemplates": false,
+    "enGB":  "Exotic Weapon",
+    "zhCN": "异种武器"
+  },
+  {
+    "Key": "CraftMaster.UI.LightArmor",
+    "ProcessTemplates": false,
+    "enGB":  "Light Armor",
+    "zhCN": "轻型护甲"
+  },
+  {
+    "Key": "CraftMaster.UI.MiddleArmor",
+    "ProcessTemplates": false,
+    "enGB":  "Middle Armor",
+    "zhCN": "中型护甲"
+  },
+  {
+    "Key": "CraftMaster.UI.HeavyArmor",
+    "ProcessTemplates": false,
+    "enGB":  "Heavy Armor",
+    "zhCN": "重型护甲"
+  },
+  {
+    "Key": "CraftMaster.UI.BardingArmor",
+    "ProcessTemplates": false,
+    "enGB":  "Barding Armor",
+    "zhCN": "坐骑护甲"
+  },
+  {
+    "Key": "CraftMaster.UI.Craft",
+    "ProcessTemplates": false,
+    "enGB":  "Craft",
+    "zhCN": "制造"
+  },
+  {
+    "Key": "CraftMaster.UI.Material",
+    "ProcessTemplates": false,
+    "enGB":  "Material",
+    "zhCN": "材质"
+  },
+  {
+    "Key": "CraftMaster.UI.Material_Normal",
+    "ProcessTemplates": false,
+    "enGB":  "Normal",
+    "zhCN": "普通"
+  },
+  {
+    "Key": "CraftMaster.UI.Material_Masterwork",
+    "ProcessTemplates": false,
+    "enGB":  "Masterwork",
+    "zhCN": "精制品"
+  },
+  {
+    "Key": "CraftMaster.UI.Material_ColdIron",
+    "ProcessTemplates": false,
+    "enGB":  "Cold Iron",
+    "zhCN": "寒铁"
+  },
+  {
+    "Key": "CraftMaster.UI.Material_Mithral",
+    "ProcessTemplates": false,
+    "enGB":  "Mithral",
+    "zhCN": "秘银"
+  },
+  {
+    "Key": "CraftMaster.UI.Material_Adamantine",
+    "ProcessTemplates": false,
+    "enGB":  "Adamantine",
+    "zhCN": "精金"
+  },
+  {
+    "Key": "CraftMaster.UI.RawCost(cost)",
+    "ProcessTemplates": false,
+    "enGB": "Raw Price: {0}",
+    "zhCN": "原始价格：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.WandDC(dc)",
+    "ProcessTemplates": false,
+    "enGB": "Raw Price: {0}",
+    "zhCN": "法杖DC：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.InsufficientCraftCost(money)",
+    "ProcessTemplates": false,
+    "enGB":  "Craft Cost: {0} (Insufficient)",
+    "zhCN": "制造消耗：{0}（不满足）"
+  },
+  {
+    "Key": "CraftMaster.UI.CraftCost(money)",
+    "ProcessTemplates": false,
+    "enGB":  "Craft Cost: {0}",
+    "zhCN": "制造消耗：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.CurrentProject",
+    "ProcessTemplates": false,
+    "enGB":  "Current Project",
+    "zhCN": "正在进行的项目"
+  },
+  {
+    "Key": "CraftMaster.UI.SortMode_Time",
+    "ProcessTemplates": false,
+    "enGB":  "Sort by Time",
+    "zhCN": "按完成时间排序"
+  },
+  {
+    "Key": "CraftMaster.UI.SortMode_Author",
+    "ProcessTemplates": false,
+    "enGB":  "Sort by Author",
+    "zhCN": "按制造者排序"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectName(name)",
+    "ProcessTemplates": false,
+    "enGB":  "Project: {0}",
+    "zhCN": "项目：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectAuthor(name)",
+    "ProcessTemplates": false,
+    "enGB":  "Author: {0}",
+    "zhCN": "制造者：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectLeftTime(time)",
+    "ProcessTemplates": false,
+    "zhCN": "预计时间：{0}",
+    "enGB":  "Estimated Time: {0}"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectCheckDC(checkDC)",
+    "ProcessTemplates": false,
+    "zhCN": "检定DC：{0}",
+    "enGB":  "Check DC: {0}"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectPoint(cur,need)",
+    "ProcessTemplates": false,
+    "enGB":  "Craft Point: {0}/{1}",
+    "zhCN": "制造进度：{0}/{1}"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectState_Crafting",
+    "ProcessTemplates": false,
+    "enGB":  "Crafting",
+    "zhCN": "正在制造"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectState_Waiting",
+    "ProcessTemplates": false,
+    "enGB":  "Waiting",
+    "zhCN": "等待中"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectCheckDCLog(roleName,itemName,checkDC,dc,roll,point,currentPoint,totalPoint)",
+    "ProcessTemplates": false,
+    "zhCN": "{0}为制造{1}进行检定，难度：{2}，检定DC为{3}+{4}，制造进度+{5}，当前进度：{6}/{7}",
+    "enGB":  "{0} check {1} for crafting, DC: {2}, Check DC: {3}+{4}, Craft Point +{5}, Current Point: {6}/{7}"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectFirst",
+    "ProcessTemplates": false,
+    "enGB":  "First",
+    "zhCN": "优先"
+  },
+  {
+    "Key": "CraftMaster.UI.ProjectCancel",
+    "ProcessTemplates": false,
+    "enGB":  "Cancel",
+    "zhCN": "取消制造"
+  },
+  {
+    "Key": "CraftMaster.UI.ItemFromTab",
+    "ProcessTemplates": false,
+    "enGB":  "Item From",
+    "zhCN": "物品来源"
+  },
+  {
+    "Key": "CraftMaster.UI.ItemFromTab_All",
+    "ProcessTemplates": false,
+    "enGB":  "All",
+    "zhCN": "全部"
+  },
+  {
+    "Key": "CraftMaster.UI.ItemFromTab_Active",
+    "ProcessTemplates": false,
+    "enGB":  "Active",
+    "zhCN": "全队"
+  },
+  {
+    "Key": "CraftMaster.UI.ItemFromTab_Inventory",
+    "ProcessTemplates": false,
+    "enGB":  "Inventory",
+    "zhCN": "物品栏"
+  },
+  {
+    "Key": "CraftMaster.UI.ItemFromTab_Equipment",
+    "ProcessTemplates": false,
+    "enGB":  "Equipment",
+    "zhCN": "已装备"
+  },
+  {
+    "Key": "CraftMaster.UI.ItemFromTab_Chest",
+    "ProcessTemplates": false,
+    "enGB":  "Chest",
+    "zhCN": "仓库"
+  },
+  {
+    "Key": "CraftMaster.UI.Enchantment_SelectItem",
+    "ProcessTemplates": false,
+    "enGB":  "Select Item",
+    "zhCN": "选择物品"
+  },
+  {
+    "Key": "CraftMaster.UI.Enchantment_All",
+    "ProcessTemplates": false,
+    "enGB":  "All Enchantment",
+    "zhCN": "所有附魔"
+  },
+  {
+    "Key": "CraftMaster.UI.Enchantment_Selected",
+    "ProcessTemplates": false,
+    "enGB":  "Selected Enchantment",
+    "zhCN": "已选择附魔"
+  },
+  {
+    "Key": "CraftMaster.UI.Enchantment_BuildState",
+    "ProcessTemplates": false,
+    "enGB":  "Build State",
+    "zhCN": "物品设定"
+  },
+  {
+    "Key": "CraftMaster.UI.EnchantmentPoint(point)",
+    "ProcessTemplates": false,
+    "enGB": "Enchantment Point: {0}",
+    "zhCN": "当前附魔点数：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.Enhancement(point)",
+    "ProcessTemplates": false,
+    "enGB": "Enhancement Point: {0}",
+    "zhCN": "当前增强点数：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.HasEnchantment",
+    "ProcessTemplates": false,
+    "enGB": "Has Enchantment",
+    "zhCN": "已有附魔"
+  },
+  {
+    "Key": "CraftMaster.UI.AddEnchantment",
+    "ProcessTemplates": false,
+    "enGB": "Add Enchantment",
+    "zhCN": "新增附魔"
+  },
+  {
+    "Key": "CraftMaster.UI.EnchantmentName(name)",
+    "ProcessTemplates": false,
+    "enGB":  "Enchantment: <b>{0}</b>",
+    "zhCN": "附魔：<b>{0}</b>"
+  },
+  {
+    "Key": "CraftMaster.UI.EnchantmentPointUsage(point)",
+    "ProcessTemplates": false,
+    "enGB":  "Point Usage: {0}",
+    "zhCN": "占用点数：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.EnchantmentCasterLevel(level)",
+    "ProcessTemplates": false,
+    "enGB":  "Caster Level: {0}",
+    "zhCN": "施法者等级：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.EnchantmentCasterLevel(description)",
+    "ProcessTemplates": false,
+    "enGB":  "Description: {0}",
+    "zhCN": "描述：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.EquipInputName",
+    "ProcessTemplates": false,
+    "enGB":  "Name:",
+    "zhCN": "名称："
+  },
+  {
+    "Key": "CraftMaster.UI.DurationTime(timeDesc)",
+    "ProcessTemplates": false,
+    "enGB":  "Duration: {0}",
+    "zhCN": "持续时间：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.SpellLevel(level)",
+    "ProcessTemplates": false,
+    "enGB":  "Spell Lv.{0}",
+    "zhCN": "{0}环"
+  },
+  {
+    "Key": "CraftMaster.UI.SpellBook",
+    "ProcessTemplates": false,
+    "enGB":  "Spell Book",
+    "zhCN": "法术书"
+  },
+  {
+    "Key": "CraftMaster.UI.Spells",
+    "ProcessTemplates": false,
+    "enGB":  "Spells",
+    "zhCN": "法术"
+  },
+  {
+    "Key": "CraftMaster.UI.SpellLevelList",
+    "ProcessTemplates": false,
+    "enGB":  "Spell Level List",
+    "zhCN": "法术环数列表"
+  },
+  {
+    "Key": "CraftMaster.UI.CurSpellLevelSpells",
+    "ProcessTemplates": false,
+    "enGB":  "Cur Spell Level Spells",
+    "zhCN": "当前环数法术"
+  },
+  {
+    "Key": "CraftMaster.UI.SelectedSpell",
+    "ProcessTemplates": false,
+    "enGB":  "Selected Spell",
+    "zhCN": "已选择法术"
+  },
+  {
+    "Key": "CraftMaster.UI.WandSetting",
+    "ProcessTemplates": false,
+    "enGB": "Wand Setting",
+    "zhCN": "魔杖设定"
+  },
+  {
+    "Key": "CraftMaster.UI.NoSpell",
+    "ProcessTemplates": false,
+    "enGB":  "No Spell",
+    "zhCN": "无法术"
+  },
+  {
+    "Key": "CraftMaster.UI.CasterLevel",
+    "ProcessTemplates": false,
+    "enGB":  "Caster Level",
+    "zhCN": "施法者等级"
+  },
+  {
+    "Key": "CraftMaster.UI.SpellInfo(name,spellLevel,duration,minCastLevel,description)",
+    "ProcessTemplates": false,
+    "enGB":  "Name:\t\t{0}\nSpell Lv.:\t{1}\nDuration:\t{2}\nMin Cast Lv.:\t{3}\nDescription:\n\t{4}",
+    "zhCN": "名称：\t\t{0}\n环数：\t\t{1}环\n持续时间：\t{2}\n最低施法等级：\t{3}\n描述：\n\t{4}"
+  },
+  {
+    "Key": "CraftMaster.UI.None",
+    "ProcessTemplates": false,
+    "enGB": "None",
+    "zhCN": "无"
+  },
+  {
+    "Key": "CraftMaster.UI.SpellName(name)",
+    "ProcessTemplates": false,
+    "enGB":  "Name: {0}",
+    "zhCN": "名称：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.WandSpellLevel(level)",
+    "ProcessTemplates": false,
+    "enGB":  "Spell Lv.{0}",
+    "zhCN": "环数：{0}环"
+  },
+  {
+    "Key": "CraftMaster.UI.SpellMinCasterLevel(level)",
+    "ProcessTemplates": false,
+    "enGB":  "Min Cast Lv.{0}",
+    "zhCN": "最低施法等级：{0}"
+  },
+  {
+    "Key": "CraftMaster.UI.SpellDescription(description)",
+    "ProcessTemplates": false,
+    "enGB":  "Description: \n\t{0}",
+    "zhCN": "描述：\n\u00A0\u00A0\u00A0\u00A0{0}"
+  }
+]

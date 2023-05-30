@@ -1,0 +1,74 @@
+[
+  {
+    "Key": "CraftMaster.Project.Unknown",
+    "ProcessTemplates": false,
+    "enGB": "Unknown",
+    "zhCN": "未知"
+  },
+  {
+    "Key": "CraftMaster.Project.Craft(type,name)",
+    "ProcessTemplates": false,
+    "enGB": "Craft [{0}]{1}",
+    "zhCN": "制作[{0}]{1}"
+  },
+  {
+    "Key": "CraftMaster.Project.Wand",
+    "ProcessTemplates": false,
+    "enGB": "Wand",
+    "zhCN": "魔杖"
+  },
+  {
+    "Key": "CraftMaster.Project.Enchantment(type,name)",
+    "ProcessTemplates": false,
+    "enGB": "Enchant [{0}]{1}",
+    "zhCN": "附魔[{0}]{1}"
+  },
+  {
+    "Key": "CraftMaster.Project.FinishParty(author,project)",
+    "ProcessTemplates": false,
+    "enGB": "{0} finished {1}, the item has been stored in the inventory",
+    "zhCN": "{0}完成了{1}，物品已经放入了背包"
+  },
+  {
+    "Key": "CraftMaster.Project.FinishRemote(author,project)",
+    "ProcessTemplates": false,
+    "enGB": "{0} finished {1}, the item has been stored in the storage",
+    "zhCN": "{0}完成了{1}，物品已经存入了仓库"
+  },
+  {
+    "Key": "CraftMaster.Project.Instant",
+    "ProcessTemplates": false,
+    "enGB": "Instant",
+    "zhCN": "半小时内完成"
+  },
+  {
+    "Key": "CraftMaster.Project.LeftTime(day)",
+    "ProcessTemplates": false,
+    "enGB": "{0} days left",
+    "zhCN": "{0}天后完成"
+  },
+  {
+    "Key": "CraftMaster.Project.LeftTime(hour)",
+    "ProcessTemplates": false,
+    "enGB": "{0} hours left",
+    "zhCN": "{0}小时后完成"
+  },
+  {
+    "Key": "CraftMaster.UI.CheckDC(time)",
+    "ProcessTemplates": false,
+    "zhCN": "制造DC：{0}",
+    "enGB": "Craft DC: {0}"
+  },
+  {
+    "Key": "CraftMaster.UI.BuildPoint(point)",
+    "ProcessTemplates": false,
+    "zhCN": "制造点数：{0}",
+    "enGB": "Craft Point: {0}"
+  },
+  {
+    "Key": "CraftMaster.UI.NeedTime(time)",
+    "ProcessTemplates": false,
+    "zhCN": "预计完成时间：{0}",
+    "enGB": "Estimated completion time: {0}"
+  }
+]

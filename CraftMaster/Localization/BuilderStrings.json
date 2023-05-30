@@ -1,0 +1,272 @@
+﻿[
+  {
+    "Key": "CraftMaster.WeaponUsage.Ranged",
+    "ProcessTemplates": false,
+    "enGB": "Ranged",
+    "zhCN": "远程"
+  },
+  {
+    "Key": "CraftMaster.WeaponUsage.Melee",
+    "ProcessTemplates": false,
+    "enGB": "Melee",
+    "zhCN": "近战"
+  },
+  {
+    "Key": "CraftMaster.WeaponUsage.Light",
+    "ProcessTemplates": false,
+    "enGB": "Light",
+    "zhCN": "轻型"
+  },
+  {
+    "Key": "CraftMaster.WeaponUsage.TwoHanded",
+    "ProcessTemplates": false,
+    "enGB": "Two-Handed",
+    "zhCN": "双手"
+  },
+  {
+    "Key": "CraftMaster.WeaponUsage.OneHanded",
+    "ProcessTemplates": false,
+    "enGB": "One-Handed",
+    "zhCN": "单手"
+  },
+  {
+    "Key": "CraftMaster.WeaponUsage.Monk",
+    "ProcessTemplates": false,
+    "enGB": "Monk",
+    "zhCN": "武僧"
+  },
+  {
+    "Key": "CraftMaster.WeaponUsage.Double",
+    "ProcessTemplates": false,
+    "enGB": "Double",
+    "zhCN": "双持"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.None",
+    "ProcessTemplates": false,
+    "enGB": "None",
+    "zhCN": "无"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.Light",
+    "ProcessTemplates": false,
+    "enGB": "Light",
+    "zhCN": "轻甲"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.Medium",
+    "ProcessTemplates": false,
+    "enGB": "Medium",
+    "zhCN": "中甲"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.Heavy",
+    "ProcessTemplates": false,
+    "enGB": "Heavy",
+    "zhCN": "重甲"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.Buckler",
+    "ProcessTemplates": false,
+    "enGB": "Buckler",
+    "zhCN": "圆盾"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.LightShield",
+    "ProcessTemplates": false,
+    "enGB": "Light Shield",
+    "zhCN": "轻型盾牌"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.HeavyShield",
+    "ProcessTemplates": false,
+    "enGB": "Heavy Shield",
+    "zhCN": "重型盾牌"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.TowerShield",
+    "ProcessTemplates": false,
+    "enGB": "Tower Shield",
+    "zhCN": "塔盾"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.LightBarding",
+    "ProcessTemplates": false,
+    "enGB": "Light Barding",
+    "zhCN": "坐骑轻甲"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.MediumBarding",
+    "ProcessTemplates": false,
+    "enGB": "Medium Barding",
+    "zhCN": "坐骑中甲"
+  },
+  {
+    "Key": "CraftMaster.ArmorUsage.HeavyBarding",
+    "ProcessTemplates": false,
+    "enGB": "Heavy Barding",
+    "zhCN": "坐骑重甲"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Other",
+    "ProcessTemplates": false,
+    "enGB": "Other",
+    "zhCN": "其他附魔"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Enhancement",
+    "ProcessTemplates": false,
+    "enGB": "Enhancement",
+    "zhCN": "增强附魔"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Bane",
+    "ProcessTemplates": false,
+    "enGB": "Bane",
+    "zhCN": "破敌"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment",
+    "ProcessTemplates": false,
+    "enGB": "Alignment",
+    "zhCN": "阵营"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Acid",
+    "ProcessTemplates": false,
+    "enGB": "Acid",
+    "zhCN": "元素 - 酸"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Flame",
+    "ProcessTemplates": false,
+    "enGB": "Flame",
+    "zhCN": "元素 - 焰"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Ice",
+    "ProcessTemplates": false,
+    "enGB": "Ice",
+    "zhCN": "元素 - 冰"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Lightning",
+    "ProcessTemplates": false,
+    "enGB": "Lightning",
+    "zhCN": "元素 - 电"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Special",
+    "ProcessTemplates": false,
+    "enGB": "Special",
+    "zhCN": "特殊附魔"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment_NotChaotic",
+    "ProcessTemplates": false,
+    "enGB": "Chaotic Alignment (Not)",
+    "zhCN": "混乱阵营角色（不满足）"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment_NotLawful",
+    "ProcessTemplates": false,
+    "enGB": "Lawful Alignment (Not)",
+    "zhCN": "秩序阵营角色（不满足）"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment_NotGood",
+    "ProcessTemplates": false,
+    "enGB": "Good Alignment (Not)",
+    "zhCN": "善良阵营角色（不满足）"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment_NotEvil",
+    "ProcessTemplates": false,
+    "enGB": "Evil Alignment (Not)",
+    "zhCN": "邪恶阵营角色（不满足）"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment_Chaotic",
+    "ProcessTemplates": false,
+    "enGB": "Chaotic Alignment",
+    "zhCN": "混乱阵营角色"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment_Lawful",
+    "ProcessTemplates": false,
+    "enGB": "Lawful Alignment",
+    "zhCN": "秩序阵营角色"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment_Good",
+    "ProcessTemplates": false,
+    "enGB": "Good Alignment",
+    "zhCN": "善良阵营角色"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Alignment_Evil",
+    "ProcessTemplates": false,
+    "enGB": "Evil Alignment",
+    "zhCN": "邪恶阵营角色"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Magic_HasMagic(name)",
+    "ProcessTemplates": false,
+    "enGB": "Has [{0}] Magic",
+    "zhCN": "释放[{0}]的能力"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Magic_NoMagic(name)",
+    "ProcessTemplates": false,
+    "enGB": "Has [{0}] Magic (Not)",
+    "zhCN": "释放[{0}]的能力（不满足）"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.And",
+    "ProcessTemplates": false,
+    "enGB": "And▼",
+    "zhCN": "满足以下所有条件▼"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.Or",
+    "ProcessTemplates": false,
+    "enGB": "Or▼",
+    "zhCN": "满足以下任一条件▼"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.EnchantmentRequire",
+    "ProcessTemplates": false,
+    "enGB": "Enchantment Require",
+    "zhCN": "前置附魔▼"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.EnchantmentRequire(name)",
+    "ProcessTemplates": false,
+    "enGB": "Require: {0}",
+    "zhCN": "需要：{0}"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.EnchantmentPointNotEnough",
+    "ProcessTemplates": false,
+    "enGB":  "Enchantment Point Not Enough",
+    "zhCN": "至少需要1点增强加值以附魔"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.EnchantmentPointOutLimit",
+    "ProcessTemplates": false,
+    "enGB":  "Enchantment Point Out Limit",
+    "zhCN": "附魔点数超出上限"
+  },
+  {
+    "Key": "CraftMaster.EnchantmentGroup.CasterLevelNotEnough(require,current)",
+    "ProcessTemplates": false,
+    "enGB":  "Caster Level Not Enough\n\tRequire Level: {0}\n\tCurrent Level: {1}",
+    "zhCN": "施法者等级不足\n\t要求等级：{0}\n\t当前等级：{1}"
+  },
+  {
+    "Key": "CraftMaster.Builder.WandName(spellName)",
+    "ProcessTemplates": false, 
+    "enGB": "Wand {0}",
+    "zhCN": "魔杖 {0}"
+  }
+]

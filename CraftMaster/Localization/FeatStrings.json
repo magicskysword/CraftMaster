@@ -1,0 +1,56 @@
+[
+  {
+    "Key": "CraftMaster.Feat.PrerequisiteCasterLevel(requestLevel,curLevel)",
+    "ProcessTemplates": false,
+    "enGB": "Require Caster level: {0}\nCurrent caster level: {1}",
+    "zhCN": "需求施法者等级：{0}\n当前施法者等级：{1}"
+  },
+  {
+    "Key": "CraftMagicArmsAndArmor.Name",
+    "ProcessTemplates": false,
+    "enGB": "Craft Magic Arms and Armor",
+    "zhCN": "制造魔法武器与防具"
+  },
+  {
+    "Key": "CraftMagicArmsAndArmor.Description",
+    "ProcessTemplates": true,
+    "zhCN": "你能制造魔法盔甲，盾牌和武器。\n\n为一件武器、一套盔甲或盾牌附魔需要每小时进行一次制造检定(DC)，检定通过后增加1点制造进度，检定结果每比检定难度高5，便额外获得1点制造进度。\n\n附魔需要进行的检定次数为 10 + 新增附魔点数 ^ 2 * 10\n\n附魔的检定DC难度为 20 + 新增附魔点数 * 5",
+    "enGB": "You can create magic armor, shields and weapons.\n\nTo enchant a weapon, a set of armor or a shield, you need to make one Craft check (DC) per hour. If you succeed, you increase the progress by 1 point. For every 5 points that your check result exceeds the DC, you gain an additional point of progress.\n\nThe number of checks required to enchant an item is 10 + new enhancement bonus ^ 2 * 10\n\nThe DC for the Craft check is 20 + new enhancement bonus * 5"
+  },
+  {
+    "Key": "CraftPossessionOfConsummateSkill.Name",
+    "ProcessTemplates": false,
+    "enGB": "Craft Possession of Consummate Skill",
+    "zhCN": "炉火纯青"
+  },
+  {
+    "Key": "CraftPossessionOfConsummateSkill.Description",
+    "ProcessTemplates": true,
+    "zhCN": "你制造魔法物品的能力已臻化境，制造魔法物品时，成功通过DC检定后额外获得等于一半神话等级（向上取整）的制造点数。",
+    "enGB": "Your ability to craft magic items has reached the pinnacle of perfection. When you craft magic items, you gain an additional number of crafting points equal to half your mythic tier (rounded up) when you succeed at the DC check."
+  },
+  {
+    "Key": "CraftWand.Name",
+    "ProcessTemplates": false,
+    "enGB": "Craft Wand",
+    "zhCN": "制造魔杖"
+  },
+  {
+    "Key": "CraftWand.Description",
+    "ProcessTemplates": true,
+    "zhCN": "你能制造任何你知道的4环或以下法术的魔杖。\n\n制造一柄魔杖需要每小时进行一次制造检定(DC)，检定通过后增加1点制造进度，检定结果每比检定难度高5，便额外获得1点制造进度。\n\n制造魔杖需要进行的检定次数为 10 + 施法者等级 * 5 + 法术环数 * 10\n\n制造魔杖的检定DC难度为 20 + 施法者等级 * 2 + 法术环数 * 2",
+    "enGB": "You can create a wand of any 4th-level or lower spell that you know.\n\nTo create a wand, you need to make one Craft check (DC) per hour. If you succeed, you increase the progress by 1 point. For every 5 points that your check result exceeds the DC, you gain an additional point of progress.\n\nThe number of checks required to create a wand is 10 + caster level * 5 + spell level * 10\n\nThe DC for the Craft check is 20 + caster level * 2 + spell level * 2"
+  },
+  {
+    "Key": "CraftWandMythicFeat.Name",
+    "ProcessTemplates": false,
+    "enGB": "Craft Wand (Mythic)",
+    "zhCN": "制造魔杖（神话）"
+  },
+  {
+    "Key": "CraftWandMythicFeat.Description",
+    "ProcessTemplates": true,
+    "zhCN": "你制造魔杖的技巧是如此的卓越，你可以制造4环以上的魔杖，同时为魔杖额外添加等于你的神话等级的DC。",
+    "enGB": "Your skill in making wands is so excellent that you can make wands of 4 rings or higher, and add extra DC equal to your myth level to the wand."
+  }
+]
