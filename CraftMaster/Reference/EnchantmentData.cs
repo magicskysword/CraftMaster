@@ -20,6 +20,9 @@ public class EnchantmentData
     public int Point { get; set; }
     public int CasterLevel { get; set; }
     public EnchantmentGroup Group { get; set; }
+    /// <summary>
+    /// 检查器，用于检查是否满足条件
+    /// </summary>
     public EnchantmentDataAddChecker AddApplyChecker { get; set; }
     
     public static void CheckAlignmentGood(ItemEntity item, UnitEntityData unit, ref CheckerContext checker)
@@ -74,7 +77,7 @@ public class EnchantmentData
         }
     }
 
-    public static EnchantmentDataAddChecker GetMagicChecker(string magicGuid)
+    public static EnchantmentDataAddChecker CheckerHasMagic(string magicGuid)
     {
         void CheckMagicInternal(ItemEntity item, UnitEntityData unit, ref CheckerContext checker)
         {

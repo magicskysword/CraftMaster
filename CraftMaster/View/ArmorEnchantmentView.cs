@@ -10,25 +10,25 @@ using Kingmaker.Items;
 
 namespace CraftMaster.View;
 
-public class WeaponEnchantmentView : EnchantmentView
+public class ArmorEnchantmentView : EnchantmentView
 {
-    public WeaponBuilder WeaponBuilder => Builder as WeaponBuilder;
-    public override Func<ItemEntity, bool> Filter => WeaponFilter;
+    public ArmorBuilder ArmorBuilder => Builder as ArmorBuilder;
+    public override Func<ItemEntity, bool> Filter => ArmorFilter;
     public override IEnumerable<EnchantmentGroup> AllEnchantmentGroups =>
-        ReferenceManager.Weapon.GetAllEnchantmentGroups();
-
+        ReferenceManager.Armor.GetAllEnchantmentGroups();
+    
     public override CheckerContext CheckAddEnchantment(UnitEntityData unit,
-        EnchantmentGroup group,
+        EnchantmentGroup group, 
         EnchantmentData enchantmentData)
     {
-        var builder = WeaponBuilder;
+        var builder = ArmorBuilder;
         var curPoint = builder.TotalEnchantmentPoint;
-        var blueprint = BlueprintTool.Get<BlueprintWeaponEnchantment>(enchantmentData.Guid);
+        var blueprint = BlueprintTool.Get<BlueprintArmorEnchantment>(enchantmentData.Guid);
         var checker = new CheckerContext();
         checker.Text = blueprint.Name;
         checker.Description = blueprint.Description;
         
-        DynamicBuilderManager.CanAddEnchantment(curPoint,unit, WeaponBuilder, group, enchantmentData, ref checker);
+        DynamicBuilderManager.CanAddEnchantment(curPoint,unit, ArmorBuilder, group, enchantmentData, ref checker);
         if (enchantmentData.AddApplyChecker != null)
         {
             enchantmentData.AddApplyChecker(Item, unit, ref checker);
@@ -39,50 +39,38 @@ public class WeaponEnchantmentView : EnchantmentView
 
     public override EquipBuilder GetNewBuilder(ItemEntity newItem)
     {
-        return DynamicBuilderManager.GetWeaponNewBuilder(newItem as ItemEntityWeapon);
+        return DynamicBuilderManager.GetArmorNewBuilder(newItem as ItemEntityArmor);
     }
 
     public override EnchantmentGroup GetEnchantmentGroup(string groupKey)
     {
-        return ReferenceManager.Weapon.GetEnchantmentGroup(groupKey);
+        return ReferenceManager.Armor.GetEnchantmentGroup(groupKey);
     }
 
     public override EnchantmentData GetEnchantment(string groupKey, string enchantmentKey)
     {
-        return ReferenceManager.Weapon.GetEnchantment(groupKey, enchantmentKey);
+        return ReferenceManager.Armor.GetEnchantment(groupKey, enchantmentKey);
     }
 
     public override void CreateProject(CraftPart craftPart, int buildPoint, int spendMoney, int checkDC)
     {
-        craftPart.AddWeaponEnchantmentProject((ItemEntityWeapon)Item, WeaponBuilder, buildPoint, spendMoney, checkDC);
+        craftPart.AddArmorEnchantmentProject((ItemEntityArmor)Item, ArmorBuilder, buildPoint, spendMoney, checkDC);
     }
-
-    private static bool WeaponFilter(ItemEntity item)
+    
+    private static bool ArmorFilter(ItemEntity item)
     {
-        if (!(item is ItemEntityWeapon weapon))
+        if (!(item is ItemEntityArmor armor))
         {
             return false;
         }
             
-        if (weapon.IsPartOfAnotherItem)
+        if (armor.IsPartOfAnotherItem)
+            return false;
+        
+        if (armor.Blueprint.IsShield)
             return false;
 
-        if (weapon.IsShield)
-            return false;
-            
-        if (weapon.IsMonkUnarmedStrike)
-            return false;
-            
-        if (weapon.IsPermanentEmptyHand)
-            return false;
-            
-        if (weapon.Blueprint.IsNatural)
-            return false;
-            
-        if (weapon.Blueprint.IsUnarmed)
-            return false;
-
-        if (weapon.Blueprint.IsNotable)
+        if (armor.Blueprint.IsNotable)
             return false;
             
         return true;

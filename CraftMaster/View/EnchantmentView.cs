@@ -10,12 +10,11 @@ namespace CraftMaster.View;
 
 public abstract class EnchantmentView : BaseView
 {
-    public abstract Func<ItemEntity, bool> Filter { get; }
-    
     public abstract IEnumerable<EnchantmentGroup> AllEnchantmentGroups { get; }
     public ItemEntity Item { get; set; }
     public EquipBuilder Builder { get; set; }
     public HashSet<string> ExpandGroup { get; set; } = new();
+    public abstract Func<ItemEntity, bool> Filter { get; }
 
     public abstract CheckerContext CheckAddEnchantment(UnitEntityData unit, EnchantmentGroup group, EnchantmentData enchantmentData);
 

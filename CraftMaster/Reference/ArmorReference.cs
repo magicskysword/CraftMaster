@@ -46,6 +46,54 @@ public class ArmorReference : IEnchantmentReference, IEnhancementReference, IMat
 
     private void InitArmorEnchantmentData()
     {
+        var enhancementGroup = new EnchantmentGroup()
+        {
+            Key = "Enhancement",
+            NameStringKey = "CraftMaster.EnchantmentGroup.Enhancement",
+            AllowMultiple = false
+        };
+        enhancementGroup.AddEnchantment(new()
+        {
+            Key = "Enhancement1",
+            Guid = "a9ea95c5e02f9b7468447bc1010fe152",
+            Point = 1,
+            CasterLevel = 3,
+        });
+        enhancementGroup.AddEnchantment(new()
+        {
+            Key = "Enhancement2",
+            Guid = "758b77a97640fd747abf149f5bf538d0",
+            Point = 2,
+            CasterLevel = 6,
+        });
+        enhancementGroup.AddEnchantment(new()
+        {
+            Key = "Enhancement3",
+            Guid = "9448d3026111d6d49b31fc85e7f3745a",
+            Point = 3,
+            CasterLevel = 9,
+        });
+        enhancementGroup.AddEnchantment(new()
+        {
+            Key = "Enhancement4",
+            Guid = "eaeb89df5be2b784c96181552414ae5a",
+            Point = 4,
+            CasterLevel = 12,
+        });
+        enhancementGroup.AddEnchantment(new()
+        {
+            Key = "Enhancement5",
+            Guid = "6628f9d77fd07b54c911cd8930c0d531",
+            Point = 5,
+            CasterLevel = 15,
+        });
+
+
+        this.AddEnchantmentGroup(enhancementGroup);
+        
+        
+        
+        
     }
 
     /// <summary>
@@ -96,32 +144,32 @@ public class ArmorReference : IEnchantmentReference, IEnhancementReference, IMat
     /// <summary>
     /// 根据防具类型ID寻找原型GUID
     /// </summary>
-    /// <param name="weaponType"></param>
+    /// <param name="equipType"></param>
     /// <returns></returns>
-    public string FindArmorPrototype(string weaponType)
+    public string FindPrototype(string equipType)
     {
         string prototype;
-        if (LightArmorTypes.TryGetValue(weaponType, out prototype))
+        if (LightArmorTypes.TryGetValue(equipType, out prototype))
         {
             return prototype;
         }
 
-        if (MiddleArmorTypes.TryGetValue(weaponType, out prototype))
+        if (MiddleArmorTypes.TryGetValue(equipType, out prototype))
         {
             return prototype;
         }
         
-        if (HeavyArmorTypes.TryGetValue(weaponType, out prototype))
+        if (HeavyArmorTypes.TryGetValue(equipType, out prototype))
         {
             return prototype;
         }
         
-        if (BardingArmorTypes.TryGetValue(weaponType, out prototype))
+        if (BardingArmorTypes.TryGetValue(equipType, out prototype))
         {
             return prototype;
         }
 
-        Main.Logger.Error($"Armor type : {weaponType} not found!");
+        Main.Logger.Error($"Armor type : {equipType} not found!");
         return null;
     }
 }

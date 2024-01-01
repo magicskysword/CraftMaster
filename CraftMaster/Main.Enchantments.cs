@@ -55,6 +55,7 @@ public partial class Main
             needRefresh = true;
         }
 
+        // 
         if(!needRefresh && DateTime.Now.Subtract(LastItemFromTabCheck).TotalSeconds < 10)
             return;
         

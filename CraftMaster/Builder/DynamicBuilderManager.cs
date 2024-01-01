@@ -11,6 +11,7 @@ using CraftMaster.View;
 using HarmonyLib;
 using Kingmaker;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.Blueprints.Items.Weapons;
@@ -27,8 +28,6 @@ namespace CraftMaster.Builder;
 
 public static class DynamicBuilderManager
 {
-    public const string WeaponBuilderDirectory = "WeaponBuilder";
-    
     public static BuilderPart GetBuilderPart()
     {
         return Game.Instance?.Player?.Ensure<BuilderPart>();
@@ -41,13 +40,14 @@ public static class DynamicBuilderManager
     /// <param name="materialsReference"></param>
     /// <param name="enchantmentReference"></param>
     /// <param name="enhancementReference"></param>
-    public static ItemEntityWeapon CreateEquip(EquipBuilder builder,
+    public static ItemEntity CreateEquip(EquipBuilder builder,
         IMaterialsReference materialsReference = null,
         IEnchantmentReference enchantmentReference = null, 
         IEnhancementReference enhancementReference = null)
     {
         // 校验数据
         builder.OnValidate();
+        builder.Refresh();
         
         // 移除原始附魔组，移动到新的附魔组
         foreach (var pair in builder.RawEnchantmentGroups)
@@ -60,9 +60,30 @@ public static class DynamicBuilderManager
         builder.RawEnchantmentGroups.Clear();
         
         var prototypeGuid = builder.GetPrototypeGuid();
-        var blueprint = BlueprintTool.Get<BlueprintItemWeapon>(prototypeGuid);
-        var entity = new ItemEntityWeapon(blueprint);
         
+        ItemEntity entity;
+
+        switch (builder)
+        {
+            case WeaponBuilder:
+            {
+                var blueprint = BlueprintTool.Get<BlueprintItemWeapon>(prototypeGuid);
+                entity = new ItemEntityWeapon(blueprint);
+                break;
+            }
+            case ArmorBuilder:
+            {
+                var blueprint = BlueprintTool.Get<BlueprintItemArmor>(prototypeGuid);
+                entity = new ItemEntityArmor(blueprint);
+                break;
+            }
+            default:
+            {
+                Main.Logger.Error($"unknown builder type: {builder.GetType()}");
+                return null;
+            }
+        }
+
         // 移除原型增强附魔
         var enchants = entity.Enchantments.ToList();
         foreach (var enchant in enchants)
@@ -211,10 +232,20 @@ public static class DynamicBuilderManager
     {
         if(GetBuilderPart().TryGetMappingBuilder<WeaponBuilder>(weapon.UniqueId, out var builder))
         {
-            return builder.Copy();
+            return builder.CopyNew();
         }
         
         return new WeaponBuilder(weapon);
+    }
+    
+    public static ArmorBuilder GetArmorNewBuilder(ItemEntityArmor armor)
+    {
+        if(GetBuilderPart().TryGetMappingBuilder<ArmorBuilder>(armor.UniqueId, out var builder))
+        {
+            return builder.CopyNew();
+        }
+        
+        return new ArmorBuilder(armor);
     }
     
     public static WandBuilder GetWandNewBuilder(BlueprintAbility spell, int spellLevel)

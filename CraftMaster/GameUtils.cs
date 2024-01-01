@@ -148,7 +148,7 @@ public static class GameUtils
     
     public static bool IsEnhancement(this BlueprintItemEnchantment enchantment)
     {
-        return enchantment.Components.Any(c => c is WeaponEnhancementBonus || c is ArmorEnhancementBonus);
+        return enchantment.Components.Any(c => c is WeaponEnhancementBonus or ArmorEnhancementBonus);
     }
 
     public static bool HasAbility(this IEnumerable<AbilityData> abilities, BlueprintAbility tagAbility)
@@ -301,5 +301,28 @@ public static class GameUtils
     public static string GetArmorUsageName(BlueprintItemArmor armorBlueprint)
     {
         return GetString($"CraftMaster.ArmorUsage.{armorBlueprint.ProficiencyGroup.ToString()}");
+    }
+
+    public static void RemoveItemFromGame(ItemEntity itemEntity)
+    {
+        itemEntity.Collection?.Remove(itemEntity);
+    }
+    
+    public static void AddItemToInventory(IEnumerable<ItemEntity> itemEntities)
+    {
+        foreach (var itemEntity in itemEntities)
+        {
+            RemoveItemFromGame(itemEntity);
+            Game.Instance.Player.Inventory.Add(itemEntity);
+        }
+    }
+    
+    public static void AddItemToSharedStash(IEnumerable<ItemEntity> itemEntities)
+    {
+        foreach (var itemEntity in itemEntities)
+        {
+            RemoveItemFromGame(itemEntity);
+            Game.Instance.Player.SharedStash.Add(itemEntity);
+        }
     }
 }

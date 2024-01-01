@@ -113,35 +113,46 @@ public class CraftProject
                     itemArmor.GetArmorTypeName(),
                     builder.EquipName);
             }
+            case ProjectType.ArmorEnchantment:
+            {
+                DynamicBuilderManager.GetBuilderPart().TryGetBuilder(BuilderGuid, out ArmorBuilder builder);
+                var itemArmor = BlueprintTool.Get<BlueprintItemArmor>(builder.GetPrototypeGuid());
+                return GameUtils.GetString("CraftMaster.Project.Enchantment(type,name)").Format(
+                    itemArmor.GetArmorTypeName(),
+                    builder.EquipName);
+            }
         }
         
         return GameUtils.GetString("CraftMaster.Project.Unknown");
     }
 
-    public ItemEntity GetBuildResult()
+    public IEnumerable<ItemEntity> GetBuildResults()
     {
         switch (Type)
         {
             case ProjectType.WeaponBuild:
             case ProjectType.WeaponEnchantment:
                 DynamicBuilderManager.GetBuilderPart().TryGetBuilder(BuilderGuid, out WeaponBuilder builder);
-                return DynamicBuilderManager.CreateEquip(builder,
+                yield return DynamicBuilderManager.CreateEquip(builder,
                     materialsReference:ReferenceManager.Weapon,
                     enchantmentReference:ReferenceManager.Weapon,
                     enhancementReference:ReferenceManager.Weapon);
+                break;
             case ProjectType.ArmorBuild:
+            case ProjectType.ArmorEnchantment:
                 DynamicBuilderManager.GetBuilderPart().TryGetBuilder(BuilderGuid, out ArmorBuilder armorBuilder);
-                return DynamicBuilderManager.CreateEquip(armorBuilder,
+                yield return  DynamicBuilderManager.CreateEquip(armorBuilder,
                     materialsReference:ReferenceManager.Armor,
                     enchantmentReference:ReferenceManager.Armor,
                     enhancementReference:ReferenceManager.Armor);
+                break;
             case ProjectType.WandBuild:
                 DynamicBuilderManager.GetBuilderPart().TryGetBuilder(BuilderGuid, out WandBuilder wandBuilder);
-                return DynamicBuilderManager.CreateWand(wandBuilder);
+                yield return  DynamicBuilderManager.CreateWand(wandBuilder);
+                break;
         }
         
         Main.Logger.Error("Unknown project type: " + Type);
-        return null;
     }
 
     public void PlayFinishSound()
@@ -151,6 +162,7 @@ public class CraftProject
             case ProjectType.WeaponEnchantment:
             case ProjectType.WeaponBuild:
             case ProjectType.ArmorBuild:
+            case ProjectType.ArmorEnchantment:
                 Game.Instance.UI.UISound.Play(UISoundType.ChargenLoadPremadeBuildClick);
                 break;
             case ProjectType.WandBuild:

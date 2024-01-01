@@ -18,7 +18,7 @@ public abstract class EquipBuilder : DynamicBuilder
 
     protected EquipBuilder(ItemEntity equip)
     {
-        ItemEntity = equip;
+        RawItemEntity = equip;
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public abstract class EquipBuilder : DynamicBuilder
     public string CustomPrototypeGuid { get; set; } = string.Empty;
     
     /// <summary>
-    /// 武器类型
+    /// 装备类型
     /// </summary>
     [JsonProperty]
     public string EquipType { get; set; } = string.Empty;
@@ -69,6 +69,18 @@ public abstract class EquipBuilder : DynamicBuilder
     /// </summary>
     [JsonIgnore]
     public List<ItemEnchantment> OtherEnchantment { get; protected set; } = new();
+    
+    /// <summary>
+    /// 武器基础描述多语言Key
+    /// </summary>
+    [JsonProperty]
+    public string RawDescriptionKey { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 武器额外描述
+    /// </summary>
+    [JsonProperty]
+    public string AdditionDescription { get; set; } = string.Empty;
     
     /// <summary>
     /// 原型增强加值
@@ -100,17 +112,28 @@ public abstract class EquipBuilder : DynamicBuilder
     [JsonIgnore]
     public bool IsBuilt { get; set; }
     
-    public ItemEntity ItemEntity { get; protected set; }
+    /// <summary>
+    /// 构造器指向的原始物品数据
+    /// </summary>
+    public ItemEntity RawItemEntity { get; protected set; }
     
-    public void Refresh()
-    {
-        OnRefresh();
-    }
+    /// <summary>
+    /// 强化数据 索引
+    /// </summary>
+    public abstract IEnchantmentReference EnchantmentReference { get; }
 
     protected virtual void OnRefresh()
     {
     }
+    
+    public abstract int GetEnchantmentCost();
+    public abstract int GetRawEnchantmentCost();
 
+    public void Refresh()
+    {
+        OnRefresh();
+    }
+    
     public virtual void RemoveEnchantmentGroup(string groupKey)
     {
         if (EnchantmentGroups.ContainsKey(groupKey))
@@ -179,13 +202,94 @@ public abstract class EquipBuilder : DynamicBuilder
 
         Refresh();
     }
+
+    public override void OnValidate()
+    {
+        if(string.IsNullOrEmpty(EquipName))
+            EquipName = "";
+        if(string.IsNullOrEmpty(AdditionDescription))
+            AdditionDescription = "";
+        if(string.IsNullOrEmpty(RawDescriptionKey))
+            RawDescriptionKey = "";
+        if(string.IsNullOrEmpty(MaterialType))
+            MaterialType = "Normal";
+    }
     
-    public abstract int GetEnchantmentCost();
-    public abstract int GetRawEnchantmentCost();
+    public override bool IsValid()
+    {
+        return !string.IsNullOrEmpty(EquipName) && 
+               !string.IsNullOrEmpty(EquipType) && 
+               !string.IsNullOrEmpty(MaterialType);
+    }
     
+    /// <summary>
+    /// 读取原始附魔
+    /// </summary>
+    public void ReadRawEnchantment()
+    {
+        var enchantments = RawItemEntity.EnchantmentsCollection?.Enumerable;
+        if(enchantments == null)
+            return;
+        foreach (var enchantment in enchantments)
+        {
+            var findEnchantmentData = EnchantmentReference.GetEnchantmentByGuid(enchantment.Blueprint.AssetGuid);
+            if(findEnchantmentData == null)
+            {
+                if(!enchantment.Blueprint.HiddenInUI && !string.IsNullOrEmpty(enchantment.Blueprint.Name))
+                    OtherEnchantment.Add(enchantment);
+                continue;
+            }
+            
+            AddEnchantmentRaw(findEnchantmentData);
+        }
+    }
+
+    /// <summary>
+    /// 计算一个附魔组里的附魔加值
+    /// </summary>
+    /// <param name="enchantmentGroup"></param>
+    /// <returns></returns>
+    public int CountEnchantmentGroupPoint(Dictionary<string, List<string>> enchantmentGroup)
+    {
+        var addEnhancement = 0;
+        foreach (var pair in enchantmentGroup)
+        {
+            if(pair.Key == "Enhancement")
+                continue;
+
+            foreach (var enchantment in pair.Value)
+            {
+                addEnhancement += EnchantmentReference.GetEnchantment(pair.Key ,enchantment)?.Point ?? 0;
+            }
+        }
+
+        return addEnhancement;
+    }
+
+    /// <summary>
+    /// 尝试获取附魔组中的附魔
+    /// </summary>
+    /// <param name="enhancementGroup"></param>
+    /// <param name="outEnchantment"></param>
+    /// <returns></returns>
+    public bool TryGetEnchantmentInGroup(string enhancementGroup, out IEnumerable<EnchantmentData> outEnchantment)
+    {
+        if(EnchantmentGroups.TryGetValue(enhancementGroup, out var enchantments) && enchantments.Count > 0)
+        {
+            outEnchantment = enchantments.Select(key => EnchantmentReference.GetEnchantment(enhancementGroup, key));
+            return true;
+        }
+
+        outEnchantment = null;
+        return false;
+    }
+
     public virtual string GetPrototypeGuid()
     {
-        if(HasPrototype || string.IsNullOrEmpty(EquipType))
+        if(!HasPrototype)
+            return EnchantmentReference.FindPrototype(EquipType);
+        
+        if(string.IsNullOrEmpty(EquipType))
             return CustomPrototypeGuid;
 
         Main.Logger.Error("GetPrototypeGuid Error");

@@ -15,6 +15,8 @@ namespace CraftMaster.Builder;
 
 public class WeaponBuilder : EquipBuilder
 {
+    public override IEnchantmentReference EnchantmentReference => ReferenceManager.Weapon;
+    
     public WeaponBuilder() : base()
     {
         
@@ -26,23 +28,11 @@ public class WeaponBuilder : EquipBuilder
         MaterialType = "";
         CustomPrototypeGuid = weapon.Blueprint.AssetGuid.ToString();
         EquipName = weapon.Blueprint.Name;
-        WeaponRawDescriptionKey = weapon.Blueprint.m_DescriptionText.Key;
-        WeaponAdditionDescription = "";
+        RawDescriptionKey = weapon.Blueprint.m_DescriptionText.Key;
+        AdditionDescription = "";
         ReadRawEnchantment();
         Refresh();
     }
-
-    /// <summary>
-    /// 武器基础描述多语言Key
-    /// </summary>
-    [JsonProperty]
-    public string WeaponRawDescriptionKey { get; set; } = string.Empty;
-
-    /// <summary>
-    /// 武器额外描述
-    /// </summary>
-    [JsonProperty]
-    public string WeaponAdditionDescription { get; set; } = string.Empty;
 
     protected override void OnRefresh()
     {
@@ -81,90 +71,7 @@ public class WeaponBuilder : EquipBuilder
         // 总附魔加值
         TotalEnchantmentPoint = baseEnhancement + rawEnchantment + addEnchantment;
     }
-    
-    /// <summary>
-    /// 读取原始附魔
-    /// </summary>
-    private void ReadRawEnchantment()
-    {
-        var enchantments = ItemEntity.EnchantmentsCollection?.Enumerable;
-        if(enchantments == null)
-            return;
-        foreach (var enchantment in enchantments)
-        {
-            var findEnchantmentData = ReferenceManager.Weapon.GetEnchantmentByGuid(enchantment.Blueprint.AssetGuid);
-            if(findEnchantmentData == null)
-            {
-                if(!enchantment.Blueprint.HiddenInUI && !string.IsNullOrEmpty(enchantment.Blueprint.Name))
-                    OtherEnchantment.Add(enchantment);
-                continue;
-            }
-            
-            AddEnchantmentRaw(findEnchantmentData);
-        }
-    }
-    
-    /// <summary>
-    /// 计算一个附魔组里的附魔加值
-    /// </summary>
-    /// <param name="enchantmentGroup"></param>
-    /// <returns></returns>
-    public int CountEnchantmentGroupPoint(Dictionary<string, List<string>> enchantmentGroup)
-    {
-        var addEnhancement = 0;
-        foreach (var pair in enchantmentGroup)
-        {
-            if(pair.Key == "Enhancement")
-                continue;
 
-            foreach (var enchantment in pair.Value)
-            {
-                addEnhancement += ReferenceManager.Weapon.GetEnchantment(pair.Key ,enchantment)?.Point ?? 0;
-            }
-        }
-
-        return addEnhancement;
-    }
-
-    /// <summary>
-    /// 尝试获取附魔组中的附魔
-    /// </summary>
-    /// <param name="enhancementGroup"></param>
-    /// <param name="outEnchantment"></param>
-    /// <returns></returns>
-    public bool TryGetEnchantmentInGroup(string enhancementGroup, out IEnumerable<EnchantmentData> outEnchantment)
-    {
-        if(EnchantmentGroups.TryGetValue(enhancementGroup, out var enchantments) && enchantments.Count > 0)
-        {
-            outEnchantment = enchantments.Select(key => ReferenceManager.Weapon.GetEnchantment(enhancementGroup, key));
-            return true;
-        }
-
-        outEnchantment = null;
-        return false;
-    }
-
-    public override void OnValidate()
-    {
-        if(string.IsNullOrEmpty(EquipName))
-            EquipName = "";
-        if(string.IsNullOrEmpty(WeaponAdditionDescription))
-            WeaponAdditionDescription = "";
-        if(string.IsNullOrEmpty(WeaponRawDescriptionKey))
-            WeaponRawDescriptionKey = "";
-        if(string.IsNullOrEmpty(MaterialType))
-            MaterialType = "Normal";
-        
-        Refresh();
-    }
-
-    public override bool IsValid()
-    {
-        return !string.IsNullOrEmpty(EquipName) && 
-               !string.IsNullOrEmpty(EquipType) && 
-               !string.IsNullOrEmpty(MaterialType);
-    }
-    
     /// <summary>
     /// 获取原始制造点数
     /// </summary>
@@ -227,7 +134,7 @@ public class WeaponBuilder : EquipBuilder
         return (int)cost;
     }
 
-    public WeaponBuilder Copy()
+    public WeaponBuilder CopyNew()
     {
         var json = JsonConvert.SerializeObject(this);
         var newBuilder = JsonConvert.DeserializeObject<WeaponBuilder>(json);
@@ -239,13 +146,5 @@ public class WeaponBuilder : EquipBuilder
     public virtual int GetTotalCost()
     {
         return GetRawCost() + GetEnchantmentCost();
-    }
-
-    public override string GetPrototypeGuid()
-    {
-        if(!HasPrototype)
-            return ReferenceManager.Weapon.FindWeaponPrototype(EquipType);
-        
-        return base.GetPrototypeGuid();
     }
 }

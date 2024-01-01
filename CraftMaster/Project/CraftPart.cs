@@ -62,7 +62,10 @@ public class CraftPart : UnitPart
         }
     }
 
-    public CraftProject CreateProject(ProjectType type, DynamicBuilder builder, int buildPoint, int price,
+    public CraftProject CreateAndAddProject(ProjectType type,
+        DynamicBuilder builder, 
+        int buildPoint,
+        int price,
         int checkDC,
         string[] assetGuids = null)
     {
@@ -105,7 +108,7 @@ public class CraftPart : UnitPart
     public void AddWeaponBuildProject(WeaponBuilder builder, int buildPoint, int price, int checkDC)
     {
         DynamicBuilderManager.AddWeaponBuilder(builder);
-        var project = CreateProject(ProjectType.WeaponBuild, builder, buildPoint, price, checkDC);
+        var project = CreateAndAddProject(ProjectType.WeaponBuild, builder, buildPoint, price, checkDC);
         GameUtils.ChangeMoney(-project.Price);
         RefreshLeftTime();
     }
@@ -113,7 +116,7 @@ public class CraftPart : UnitPart
     public void AddArmorBuildProject(ArmorBuilder armorBuilder, int buildPoint, int price, int checkDC)
     {
         DynamicBuilderManager.AddArmorBuilder(armorBuilder);
-        var project = CreateProject(ProjectType.ArmorBuild, armorBuilder, buildPoint, price, checkDC);
+        var project = CreateAndAddProject(ProjectType.ArmorBuild, armorBuilder, buildPoint, price, checkDC);
         GameUtils.ChangeMoney(-project.Price);
         RefreshLeftTime();
     }
@@ -126,8 +129,22 @@ public class CraftPart : UnitPart
             weapon.Collection.Remove(weapon);
         }
         TempStorage.Add(weapon);
-        var project = CreateProject(ProjectType.WeaponEnchantment, builder, buildPoint, price, checkDC, 
+        var project = CreateAndAddProject(ProjectType.WeaponEnchantment, builder, buildPoint, price, checkDC, 
             new [] { weapon.UniqueId });
+        GameUtils.ChangeMoney(-project.Price);
+        RefreshLeftTime();
+    }
+    
+    public void AddArmorEnchantmentProject(ItemEntityArmor armor, ArmorBuilder builder, int buildPoint, int price, int checkDC)
+    {
+        DynamicBuilderManager.AddArmorBuilder(builder);
+        if (armor.Collection != null)
+        {
+            armor.Collection.Remove(armor);
+        }
+        TempStorage.Add(armor);
+        var project = CreateAndAddProject(ProjectType.ArmorEnchantment, builder, buildPoint, price, checkDC, 
+            new [] { armor.UniqueId });
         GameUtils.ChangeMoney(-project.Price);
         RefreshLeftTime();
     }
@@ -136,7 +153,7 @@ public class CraftPart : UnitPart
     {
         DynamicBuilderManager.AddAndGetShardWandBuilder(wandBuilder);
         
-        var project = CreateProject(ProjectType.WandBuild, wandBuilder, buildPoint, price, checkDC);
+        var project = CreateAndAddProject(ProjectType.WandBuild, wandBuilder, buildPoint, price, checkDC);
         GameUtils.ChangeMoney(-project.Price);
         RefreshLeftTime();
     }
@@ -190,13 +207,14 @@ public class CraftPart : UnitPart
 
     private void FinishProject(CraftProject project)
     {
+        var resultItems = project.GetBuildResults();
         if (Owner.IsUnitInParty())
         {
             GameUtils.ShowLogMessage(GameUtils.GetString("CraftMaster.Project.FinishParty(author,project)").Format(
                 Owner.CharacterName,
                 project.GetProjectName())
             );
-            Game.Instance.Player.Inventory.Add(project.GetBuildResult());
+            GameUtils.AddItemToInventory(resultItems);
         }
         else
         {
@@ -204,16 +222,19 @@ public class CraftPart : UnitPart
                 Owner.CharacterName, 
                 project.GetProjectName())
             );
-            Game.Instance.Player.SharedStash.Add(project.GetBuildResult());
+            GameUtils.AddItemToSharedStash(resultItems);
         }
-        if(project.UsedAssets.Count > 0)
-            DeleteUsedAssets(project.UsedAssets);
+
+        DeleteUsedAssets(project.UsedAssets);
 
         project.PlayFinishSound();
     }
 
     private void DeleteUsedAssets(List<string> projectUsedAssets)
     {
+        if(projectUsedAssets == null || projectUsedAssets.Count == 0)
+            return;
+        
         foreach (var usedAsset in projectUsedAssets)
         {
             var item = TempStorage.Items.FirstOrDefault(item => item.UniqueId == usedAsset);
