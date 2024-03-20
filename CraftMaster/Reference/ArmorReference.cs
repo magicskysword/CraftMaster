@@ -87,13 +87,8 @@ public class ArmorReference : IEnchantmentReference, IEnhancementReference, IMat
             Point = 5,
             CasterLevel = 15,
         });
-
-
+        
         this.AddEnchantmentGroup(enhancementGroup);
-        
-        
-        
-        
     }
 
     /// <summary>
