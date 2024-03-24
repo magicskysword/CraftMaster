@@ -49,14 +49,17 @@ public partial class Main
         CMGUI.NTitle("CraftMaster.UI.ItemFromTab");
         var newValue = CMGUI.ToggleGroupNumber(Enumerable.Range(0, ItemFromTabs.Count), SelectedItemFromTab, 
             index => GameUtils.GetString(ItemFromTabs[index]));
-        if(newValue != SelectedItemFromTab)
+        
+        if(newValue != SelectedItemFromTab 
+           || DateTime.Now.Subtract(LastItemFromTabCheck).TotalSeconds >= 10
+           || NeedRefreshGUI)
         {
             SelectedItemFromTab = newValue;
             needRefresh = true;
         }
 
         // 
-        if(!needRefresh && DateTime.Now.Subtract(LastItemFromTabCheck).TotalSeconds < 10)
+        if(!needRefresh)
             return;
         
         LastItemFromTabCheck = DateTime.Now;

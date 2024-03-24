@@ -31,6 +31,7 @@ namespace CraftMaster
         public static UnityModManager.ModEntry ModEntry;
         public static UnityModManager.ModEntry.ModLogger Logger;
         public static CraftMasterSetting Settings;
+        public static bool NeedRefreshGUI;
 
         public static bool Load(UnityModManager.ModEntry modEntry)
         {
@@ -78,6 +79,10 @@ namespace CraftMaster
                 Logger.Error(e.ToString());
                 ResetAll();
                 throw;
+            }
+            finally
+            {
+                NeedRefreshGUI = false;
             }
 
             CMGUI.OnTooltip();

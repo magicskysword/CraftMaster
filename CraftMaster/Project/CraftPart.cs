@@ -110,7 +110,7 @@ public class CraftPart : UnitPart
         DynamicBuilderManager.AddWeaponBuilder(builder);
         var project = CreateAndAddProject(ProjectType.WeaponBuild, builder, buildPoint, price, checkDC);
         GameUtils.ChangeMoney(-project.Price);
-        RefreshLeftTime();
+        RefreshProjects();
     }
     
     public void AddArmorBuildProject(ArmorBuilder armorBuilder, int buildPoint, int price, int checkDC)
@@ -118,7 +118,7 @@ public class CraftPart : UnitPart
         DynamicBuilderManager.AddArmorBuilder(armorBuilder);
         var project = CreateAndAddProject(ProjectType.ArmorBuild, armorBuilder, buildPoint, price, checkDC);
         GameUtils.ChangeMoney(-project.Price);
-        RefreshLeftTime();
+        RefreshProjects();
     }
     
     public void AddWeaponEnchantmentProject(ItemEntityWeapon weapon, WeaponBuilder builder, int buildPoint, int price, int checkDC)
@@ -132,7 +132,7 @@ public class CraftPart : UnitPart
         var project = CreateAndAddProject(ProjectType.WeaponEnchantment, builder, buildPoint, price, checkDC, 
             new [] { weapon.UniqueId });
         GameUtils.ChangeMoney(-project.Price);
-        RefreshLeftTime();
+        RefreshProjects();
     }
     
     public void AddArmorEnchantmentProject(ItemEntityArmor armor, ArmorBuilder builder, int buildPoint, int price, int checkDC)
@@ -146,7 +146,7 @@ public class CraftPart : UnitPart
         var project = CreateAndAddProject(ProjectType.ArmorEnchantment, builder, buildPoint, price, checkDC, 
             new [] { armor.UniqueId });
         GameUtils.ChangeMoney(-project.Price);
-        RefreshLeftTime();
+        RefreshProjects();
     }
     
     public void AddWandBuildProject(WandBuilder wandBuilder, int buildPoint, int price, int checkDC)
@@ -155,7 +155,7 @@ public class CraftPart : UnitPart
         
         var project = CreateAndAddProject(ProjectType.WandBuild, wandBuilder, buildPoint, price, checkDC);
         GameUtils.ChangeMoney(-project.Price);
-        RefreshLeftTime();
+        RefreshProjects();
     }
     
     public void CancelProject(CraftProject craftProject)
@@ -202,7 +202,7 @@ public class CraftPart : UnitPart
             FinishProject(project);
         }
 
-        RefreshLeftTime();
+        RefreshProjects();
     }
 
     private void FinishProject(CraftProject project)
@@ -245,8 +245,9 @@ public class CraftPart : UnitPart
         }
     }
 
-    private void RefreshLeftTime()
+    private void RefreshProjects()
     {
+        Main.NeedRefreshGUI = true;
         foreach (var project in Projects)
         {
             project.LeftTime = GetNeedTime(project.NeedPoint, project.CheckDC);
