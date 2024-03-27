@@ -5,7 +5,6 @@ using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Enums;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using ModKit.Utility;
 
 namespace CraftMaster.Reference;
 

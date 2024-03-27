@@ -10,8 +10,6 @@ using CraftMaster.View;
 using Kingmaker;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Items;
-using ModKit;
-using ModKit.Utility;
 using UnityEngine;
 
 namespace CraftMaster;
@@ -27,7 +25,7 @@ public partial class Main
         EnchantmentTabs.Add(new NamedAction(GameUtils.GetString("CraftMaster.UI.EnchantmentType_Weapon"), 
             () => RenderEnchantment(WeaponEnchantmentView)));
             
-        UI.TabBar(ref SelectedEnchantmentTab, null, EnchantmentTabs.ToArray());
+        CMGUI.TabBar(ref SelectedEnchantmentTab, null, EnchantmentTabs.ToArray());
     }
 
     private static int SelectedItemFromTab = 0;
@@ -317,6 +315,7 @@ public partial class Main
             {
                 var craftPart = SelectedUnit.GetOrCreateCraftPart();
                 view.CreateProject(craftPart, buildPoint, price, checkDC);
+                NeedRefreshGUI = true;
             }
             GUI.enabled = true;
         }

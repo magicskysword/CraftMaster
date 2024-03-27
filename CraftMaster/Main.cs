@@ -17,9 +17,6 @@ using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Localization;
 using Kingmaker.Localization.Shared;
-using Kingmaker.UI;
-using Kingmaker.UnitLogic;
-using ModKit;
 using UnityEngine;
 using UnityModManagerNet;
 
@@ -32,6 +29,7 @@ namespace CraftMaster
         public static UnityModManager.ModEntry.ModLogger Logger;
         public static CraftMasterSetting Settings;
         public static bool NeedRefreshGUI;
+        private static bool _lastNeedRefreshGUI;
 
         public static bool Load(UnityModManager.ModEntry modEntry)
         {
@@ -82,14 +80,22 @@ namespace CraftMaster
             }
             finally
             {
-                NeedRefreshGUI = false;
+                if (NeedRefreshGUI)
+                {
+                    _lastNeedRefreshGUI = true;
+                }
+                else if (_lastNeedRefreshGUI)
+                {
+                    _lastNeedRefreshGUI = false;
+                    NeedRefreshGUI = false;
+                }
             }
-
-            CMGUI.OnTooltip();
         }
 
         private static void RenderModGUI()
         {
+            CMGUI.TryInit();
+            
             if (!GameUtils.IsGameStart())
             {
                 CMGUI.NTitle("CraftMaster.UI.Unavailable");
@@ -119,7 +125,7 @@ namespace CraftMaster
                     CraftTabs.Add(
                         new NamedAction(GameUtils.GetString("CraftMaster.UI.CraftType_Wand"), RenderCraftWand));
 
-                UI.TabBar(ref SelectedTab, null, CraftTabs.ToArray());
+                CMGUI.TabBar(ref SelectedTab, null, CraftTabs.ToArray());
 
                 RenderAllCraftProject();
             }
@@ -141,6 +147,8 @@ namespace CraftMaster
                 }
             }
 #endif
+            
+            CMGUI.OnTooltip();
         }
 
         private static void RenderUnitSelection()
@@ -264,7 +272,7 @@ namespace CraftMaster
                     }
                 }
 
-                UI.TabBar(ref ProjectSortMode, null,
+                CMGUI.TabBar(ref ProjectSortMode, null,
                     new(GameUtils.GetString("CraftMaster.UI.SortMode_Time"), () =>
                     {
                         allProjects = allProjects
@@ -327,10 +335,10 @@ namespace CraftMaster
             private static void Postfix(UnityModManager.UI __instance, ref Rect ___mWindowRect,
                 ref Vector2[] ___mScrollPosition, ref int ___tabId)
             {
-                UI.ummRect = ___mWindowRect;
-                UI.ummWidth = ___mWindowRect.width;
-                UI.ummScrollPosition = ___mScrollPosition;
-                UI.ummTabID = ___tabId;
+                CMGUI.ummRect = ___mWindowRect;
+                CMGUI.ummWidth = ___mWindowRect.width;
+                CMGUI.ummScrollPosition = ___mScrollPosition;
+                CMGUI.ummTabID = ___tabId;
             }
         }
 

@@ -14,6 +14,7 @@ namespace CraftMaster.Builder;
 
 public class ArmorBuilder : EquipBuilder
 {
+    [JsonIgnore]
     public override IEnchantmentReference EnchantmentReference => ReferenceManager.Armor;
     
     public ArmorBuilder()
@@ -120,8 +121,7 @@ public class ArmorBuilder : EquipBuilder
     
     public ArmorBuilder CopyNew()
     {
-        var json = JsonConvert.SerializeObject(this);
-        var newBuilder = JsonConvert.DeserializeObject<ArmorBuilder>(json);
+        var newBuilder = CopyNew(this);
         newBuilder.Guid = System.Guid.NewGuid().ToString("N");
         newBuilder.Refresh();
         return newBuilder;

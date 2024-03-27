@@ -1,19 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Kingmaker.Items;
-using Kingmaker.Localization;
-using Kingmaker.UnitLogic;
-using Kingmaker.Utility;
-using ModKit;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace CraftMaster;
 
+////////// Some Copy from Cabarius/ModKit //////////
+public class NamedAction
+{
+    public string name { get; }
+
+    public Action action { get; }
+
+    public Func<bool> canPerform { get; }
+
+    public NamedAction(string name, Action action, Func<bool> canPerform = null)
+    {
+        this.name = name;
+        this.action = action;
+        this.canPerform = canPerform ?? (() => true);
+    }
+}
+
 public static class CMGUI
 {
-    static CMGUI()
+    public static void TryInit()
     {
+        if (IsInit)
+        {
+            return;
+        }
+
+        IsInit = true;
+        
         ButtonNormalStyle = new GUIStyle(GUI.skin.button);
         ButtonPressStyle = new GUIStyle(GUI.skin.button);
         BoxStyle = new GUIStyle(GUI.skin.box);
@@ -27,7 +47,9 @@ public static class CMGUI
         TooltipStyle.alignment = TextAnchor.UpperLeft;
         TooltipStyle.wordWrap = true;
     }
-    
+
+    public static bool IsInit { get; set; }
+
     public static GUIStyle ButtonNormalStyle;
     public static GUIStyle ButtonPressStyle;
     public static GUIStyle BoxStyle;
@@ -36,6 +58,15 @@ public static class CMGUI
     public static GUIStyle TooltipStyle;
 
     public static GUILayoutOption[] WidthArray = new GUILayoutOption[1];
+    
+    public static float ummWidth = 960f;
+    public static Vector2[] ummScrollPosition;
+    public static int ummTabID;
+    public static Rect ummRect;
+    
+    public static bool IsNarrow => ummWidth < 1200.0;
+
+    public static bool IsWide => ummWidth >= 1920.0;
 
     
     private static string _tooltipText = string.Empty;
@@ -230,7 +261,7 @@ public static class CMGUI
         
         if (numPerRow == null)
         {
-            var width = UI.ummWidth - 200;
+            var width = ummWidth - 200;
             if (width <= perWidth)
             {
                 numPerRow = 1;
@@ -241,7 +272,7 @@ public static class CMGUI
             }
         }
         
-        var options = new GUILayoutOption[] { GUILayout.Width(perWidth.Value) };
+        var options = new[] { GUILayout.Width(perWidth.Value) };
         var index = 0;
         foreach (var data in enumerable)
         {
@@ -328,6 +359,7 @@ public static class CMGUI
     }
 
     private static List<GUILayoutOption> _scrollListOptions = new List<GUILayoutOption>();
+
     public static Vector2 VerticalScrollList<T>(Vector2 scrollPos,IEnumerable<T> loadItems, Action<T, int, GUILayoutOption[]> render,
         int? height = null, int? width = null)
     {
@@ -447,5 +479,64 @@ public static class CMGUI
         GUILayout.EndHorizontal();
         curValue = Mathf.Clamp(curValue, minValue, maxValue);
         return curValue;
+    }
+    
+    public static bool SelectionGrid(
+        ref int selected,
+        string[] texts,
+        int xCols,
+        params GUILayoutOption[] options)
+    {
+        if (xCols <= 0)
+            xCols = texts.Count();
+        if (IsNarrow)
+            xCols = Math.Min(4, xCols);
+        int sel = selected;
+        var source = texts.Select((a, i) => i != sel ? a : a.Orange().Bold());
+        if (xCols <= 0)
+            xCols = texts.Count();
+        selected = GUILayout.SelectionGrid(selected, source.ToArray(), xCols, options);
+        return sel != selected;
+    }
+    
+    public static void TabBar(ref int selected, Action header = null, params NamedAction[] actions)
+    {
+        if (selected >= actions.Count())
+            selected = 0;
+        int sel = selected;
+        IEnumerable<string> source = actions.Select((a, i) => i != sel ? a.name : a.name.Orange().Bold());
+        SelectionGrid(ref selected, source.ToArray(), 8, GUILayout.Width(ummWidth - 60f));
+        GUILayout.BeginVertical("box");
+        if (header != null)
+            header();
+        actions[selected].action();
+        GUILayout.EndVertical();
+    }
+    
+    public static string Orange(this string s) => $"<color=orange>{s}</color>";
+    
+    public static string Red(this string s) => $"<color=red>{s}</color>";
+    
+    public static string Green(this string s) => $"<color=green>{s}</color>";
+    
+    public static string Bold(this string s) => $"<b>{s}</b>";
+    
+    public static string Italic(this string s) => $"<i>{s}</i>";
+    
+    public static string Underline(this string s) => $"<u>{s}</u>";
+    
+    public static string Size(this string s, int size) => $"<size={size}>{s}</size>";
+
+    private static Regex HTMLTagRegex = new Regex("<.*?>", RegexOptions.Compiled);
+    
+    public static string StripHTML(this string s)
+    {
+        var sb = new System.Text.StringBuilder();
+        foreach (Match match in HTMLTagRegex.Matches(s))
+        {
+            sb.Replace(match.Value, "");
+        }
+        
+        return sb.ToString();
     }
 }

@@ -8,7 +8,6 @@ using Kingmaker;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using ModKit;
 using UnityEngine;
 
 namespace CraftMaster;

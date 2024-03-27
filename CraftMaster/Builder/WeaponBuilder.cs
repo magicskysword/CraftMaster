@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using BlueprintCore.Utils;
 using CraftMaster.Reference;
+using Kingmaker;
 using Kingmaker.Blueprints.Items;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.Items.Weapons;
+using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
@@ -15,6 +18,7 @@ namespace CraftMaster.Builder;
 
 public class WeaponBuilder : EquipBuilder
 {
+    [JsonIgnore]
     public override IEnchantmentReference EnchantmentReference => ReferenceManager.Weapon;
     
     public WeaponBuilder() : base()
@@ -136,8 +140,7 @@ public class WeaponBuilder : EquipBuilder
 
     public WeaponBuilder CopyNew()
     {
-        var json = JsonConvert.SerializeObject(this);
-        var newBuilder = JsonConvert.DeserializeObject<WeaponBuilder>(json);
+        var newBuilder = CopyNew(this);
         newBuilder.Guid = System.Guid.NewGuid().ToString("N");
         newBuilder.Refresh();
         return newBuilder;

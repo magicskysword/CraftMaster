@@ -95,6 +95,12 @@ public abstract class EquipBuilder : DynamicBuilder
     public int ActuallyEnhancement { get; protected set; }
 
     /// <summary>
+    /// 构造器指向的原始物品数据
+    /// </summary>
+    [JsonIgnore]
+    public ItemEntity RawItemEntity { get; set; }
+    
+    /// <summary>
     /// 原型附魔加值
     /// </summary>
     [JsonIgnore]
@@ -113,13 +119,9 @@ public abstract class EquipBuilder : DynamicBuilder
     public bool IsBuilt { get; set; }
     
     /// <summary>
-    /// 构造器指向的原始物品数据
-    /// </summary>
-    public ItemEntity RawItemEntity { get; protected set; }
-    
-    /// <summary>
     /// 强化数据 索引
     /// </summary>
+    [JsonIgnore]
     public abstract IEnchantmentReference EnchantmentReference { get; }
 
     protected virtual void OnRefresh()

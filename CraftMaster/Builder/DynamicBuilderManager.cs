@@ -19,8 +19,6 @@ using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.Utility;
-using ModKit.Utility;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -232,7 +230,9 @@ public static class DynamicBuilderManager
     {
         if(GetBuilderPart().TryGetMappingBuilder<WeaponBuilder>(weapon.UniqueId, out var builder))
         {
-            return builder.CopyNew();
+            var newBuilder = builder.CopyNew();
+            newBuilder.RawItemEntity = weapon;
+            return newBuilder;
         }
         
         return new WeaponBuilder(weapon);
@@ -242,7 +242,9 @@ public static class DynamicBuilderManager
     {
         if(GetBuilderPart().TryGetMappingBuilder<ArmorBuilder>(armor.UniqueId, out var builder))
         {
-            return builder.CopyNew();
+            var newBuilder = builder.CopyNew();
+            newBuilder.RawItemEntity = armor;
+            return newBuilder;
         }
         
         return new ArmorBuilder(armor);

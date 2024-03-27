@@ -11,7 +11,7 @@
     <!-- Needed to use publicized assembly -->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
-    <AssemblyName></AssemblyName>
+    <AssemblyName>CraftMaster</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +29,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
-    <PackageReference Include="ModKit" Version="1.0.8" />
     <PackageReference Include="WW-Blueprint-Core" Version="2.8.4" />
   </ItemGroup>
 
@@ -42,9 +41,6 @@
     <!-- Wrath Assemblies -->
     <Reference Include="Assembly-CSharp-firstpass.dll">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owlcat.Runtime.Core">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Core.dll</HintPath>
@@ -69,6 +65,9 @@
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(WrathPath)\Wrath_Data\Managed\Newtonsoft.Json.dll</HintPath>
     </Reference>
 
     <!-- UMM & Harmony -->
@@ -109,7 +108,6 @@
   <!-- Merges BlueprintCore.dll into the main DLL -->
   <Target Name="ILRepack" AfterTargets="Build">
     <ItemGroup>
-      <InputAssemblies Include="ModKit.dll" />
       <InputAssemblies Include="BlueprintCore.dll" />
       <InputAssemblies Include="$(AssemblyName).dll" />
       <OutputAssembly Include="$(AssemblyName).dll" />

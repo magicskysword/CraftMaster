@@ -6,7 +6,6 @@ using CraftMaster.Reference;
 using CraftMaster.View;
 using Kingmaker;
 using Kingmaker.Blueprints.Items.Weapons;
-using ModKit;
 using UnityEngine;
 
 namespace CraftMaster;
@@ -26,7 +25,7 @@ public partial class Main
             () => RenderCraftNormalEquipment(NormalArmorView)));
         
             
-        UI.TabBar(ref SelectedCraftNormalEquipmentTab, null, CraftNormalEquipmentTabs.ToArray());
+        CMGUI.TabBar(ref SelectedCraftNormalEquipmentTab, null, CraftNormalEquipmentTabs.ToArray());
     }
     
     private static void RenderCraftNormalEquipment(NormalEquipmentView view)
